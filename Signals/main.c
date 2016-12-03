@@ -108,6 +108,14 @@ void encode(char c) {
     } else if (c == '-') {
         fputs("-V|", fOUT);
     }
+      else if (c=='H'){//High to Low
+        fputs("+V", fOUT);
+        fputs("-V|", fOUT);
+    }
+      else if(c=='L'){//Low to High
+        fputs("-V", fOUT);
+        fputs("+V|", fOUT);  
+      }
 }
 
 /**
@@ -221,16 +229,11 @@ void Manchester(Command* c) {
         unsigned int i;
         for (i = 0; i < strlen(c->code); i++) {
             if (c->code[i] == '0') {
-                fputs("|", fOUT);
-                encode('+');
-                encode('-');
+                encode('H');
             } else {
-                fputs("|", fOUT);
-                encode('-');
-                encode('+');
+                encode('L');
             }
         }
-        fputs("|", fOUT);
         fclose(fOUT);
         puts("Done.");
     } else {
@@ -253,29 +256,20 @@ void D_Manchester(Command* c) {
         for (i = 0; i < strlen(c->code); i++) {
             if (c->code[i] == '0') {
                 if (prevEncoding == '-') {
-                    fputs("|", fOUT);
-                    encode('-');
-                    encode('+');
+                    encode('L');
                 } else {
-                    fputs("|", fOUT);
-                    encode('+');
-                    encode('-');
+                    encode('H');
                 }
             } else {
                 if (prevEncoding == '-') {
-                    fputs("|", fOUT);
-                    encode('+');
-                    encode('-');
+                    encode('H');
                     prevEncoding = '+';
                 } else {
-                    fputs("|", fOUT);
-                    encode('-');
-                    encode('+');
+                    encode('L');
                     prevEncoding = '-';
                 }
             }
         }
-        fputs("|", fOUT);
         fclose(fOUT);
         puts("Done.");
     } else {
