@@ -1,6 +1,6 @@
 # Signal Encoder 
 This is a program written in C. It encodes a string of binary numbers in a file with 5 different encoding schemes.
-Encoding schemes are as follows: NRZ-L, NRZ-I, B-AMI, Manchester, and Differential Manchester. http://i.imgur.com/Q4T0uj4.png
+Encoding schemes are as follows: NRZ-L, NRZ-I, B-AMI, Manchester, and Differential Manchester.
 
 | ![signal0](http://i.imgur.com/Q4T0uj4.png) 
 | --- |
